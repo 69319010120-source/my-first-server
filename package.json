@@ -1,7 +1,9 @@
 {
-5. "name": "my-first-server",
-6. "version": "1.0.0",
-7. "scripts": {
-8. "start": "node server.js"
-9. }
-10. }
+  "name": "my-first-server",
+  "version": "1.0.0",
+  "description": "Node.js Web Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
