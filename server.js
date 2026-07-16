@@ -1,24 +1,136 @@
-// 1. เรียกใชงาน Module ที่ชื่อวา 'http' ซึ่งเปนระบบพื้นฐานของ Node.js สําหรับทําเซ�[...]
-6. const http = require('http');
-7.
-8. // 2. กําหนดชองทาง (Port) ที่เซิรฟเวอรจะใชสื่อสาร โดยใหใชของที่ Cloud กํา�[...]
-(process.env.PORT) ถาไมมีใหใช 3000
-9. const port = process.env.PORT || 3000;
-10.
-11. // 3. สรางเครื่องแมขาย (Server) ที่คอยรับคําขอ (req) และตอบกลับ (res)
-12. const server = http.createServer((req, res) => {
-13.
-14. // 3.1 ตั้งรหัสสถานะ 200 หมายถึง "ทํางานสําเร็จ (OK)"
-15. res.statusCode = 200;
-16.
-17. // 3.2 บอกเบราวเซอรของผูใชวา สิ่งที่สงกลับไปคือไฟลขอความแบบ HTML ภาษาไทย (utf-8)
-18. res.setHeader('Content-Type', 'text/html; charset=utf-8');
-19.
-20. // 3.3 สงขอมูลหนาเว็บกลับไปหาผูใช
-21. res.end('<h1>สวัสดีค่ะ! นี่คือ Web Server ของ [ใสชื่อ-ธัญญาภรณ์ มีเณร 69319010120] </h1><p>เครื่องแมขายทํางานปกติบนระบบ Railway แลวค่ะ!</p>');
-22. });
-23.
-24. // 4. สั่งใหเซิรฟเวอรเริ่มตนเปดรับฟงการเชื่อมตอตาม Port ที่กําหนด[...]
-25. server.listen(port, () => {
-26. console.log(`Server is running! เคร่อืงแมขายเปดทํางานแลวที่ชองทาง: ${port}`);
-27. });
+// 1. เรียกใช้งาน Module ที่ชื่อว่า 'http' ซึ่งเป็นระบบพื้นฐานของ Node.js สำหรับทำเซิร์ฟเวอร์
+const http = require('http');
+
+// 2. กำหนดช่องทาง (Port) ที่เซิร์ฟเวอร์จะใช้สื่อสาร โดยให้ใช้ของที่ Cloud กำหนดมา ถ้าไม่มีให้ใช้ 3000
+const port = process.env.PORT || 3000;
+
+// 3. สร้างเครื่องแม่ข่าย (Server) ที่คอยรับคำขอ (req) และตอบกลับ (res)
+const server = http.createServer((req, res) => {
+  // 3.1 ตั้งรหัสสถานะ 200 หมายถึง "ทำงานสำเร็จ (OK)"
+  res.statusCode = 200;
+
+  // 3.2 บอกเบราว์เซอร์ของผู้ใช้ว่า สิ่งที่ส่งกลับไปคือไฟล์ข้อความแบบ HTML รองรับภาษาไทย (utf-8)
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+
+  // 3.3 ส่งข้อมูลหน้าเว็บกลับไปหาผู้ใช้
+  res.end(`<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 100%;
+      height: 100vh;
+      background-image: url('https://4kwallpapers.com/images/walls/thumbs_2t/24691.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    .container {
+      background-color: rgba(190, 226, 237, 0.5);
+      padding: 50px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 90%;
+      backdrop-filter: blur(5px);
+    }
+    
+    h1 {
+      color: white;
+      font-weight: bold;
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    
+    .info {
+      color: white;
+      font-size: 18px;
+      line-height: 1.8;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    
+    .info-title {
+      font-weight: bold;
+      color: #fff;
+      margin-top: 15px;
+      font-size: 16px;
+    }
+    
+    .student-id {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    
+    .nickname {
+      color: #ffe066;
+      font-weight: bold;
+      font-size: 22px;
+      margin: 10px 0;
+    }
+    
+    .hobbies {
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+    
+    .hobby-item {
+      display: inline-block;
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 8px 16px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>เลิฟลี่</h1>
+    
+    <div class="student-id">
+      รหัสนักศึกษา: 69319010120
+    </div>
+    
+    <div class="info">
+      <p><strong>ชื่อจริง: ธัญญาภรณ์ มีเณร</strong></p>
+      <p class="nickname">ชื่อเล่น: เลิฟลี่</p>
+      
+      <div class="hobbies">
+        <p class="info-title">สิ่งที่ชอบ:</p>
+        <div>
+          <span class="hobby-item">เล่นเกม</span>
+          <span class="hobby-item">ร้องเพลง</span>
+          <span class="hobby-item">เล่นกีฬา</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`);
+});
+
+// 4. สั่งให้เซิร์ฟเวอร์เริ่มต้นเปิดรับฟังการเชื่อมต่อตาม Port ที่กำหนดไว้
+server.listen(port, () => {
+  console.log(`Server is running! เครื่องแม่ข่ายเปิดทำงานแล้วที่ช่องทาง: ${port}`);
+});
