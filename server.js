@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
     }
     
     .container {
-      background-color: rgba(190, 226, 237, 0.5);
+      background-color: rgba(255, 192, 203, 0.5);
       padding: 50px;
       border-radius: 15px;
       text-align: center;
