@@ -1,7 +1,7 @@
 const http = require('http');
-// 1. เรียกใชงาน Pool จากไลบรารี pg สําหรับจัดการการเชื่อมตอฐานขอมูล
+// 1. เรียกใช้งาน Pool จากไลบรารี pg สําหรับจัดการการเชื่อมต่อฐานข้อมูล
 const { Pool } = require('pg');
-// 2. ตั้งคาการเชื่อมตอ โดยดึง URL มาจาก Environment Variable ของ Railway
+// 2. ตั้งค่าการเชื่อมต่อ โดยดึง URL มาจาก Environment Variable ของ Railway
 const pool = new Pool({
 connectionString: process.env.DATABASE_URL,
 });
@@ -11,26 +11,26 @@ res.statusCode = 200;
 res.setHeader('Content-Type', 'text/html; charset=utf-8');
 
 try {
-// 3. ขอเชื่อมตอและสงคําสั่ง SQL ไปดึงขอมูลจากตาราง students
+// 3. ขอเชื่อมต่อและส่งคําสั่ง SQL ไปดึงข้อมูลจากตาราง students
 const client = await pool.connect();
 const result = await client.query('SELECT * FROM students');
-client.release(); // คนืการเชื่อมตอเมื่อใชงานเสร็จ
-// 4. นําขอมูลที่ได(result.rows) มาประกอบเปนตาราง HTML
-let html = `<h1>ฐานข้อมูลนักศึกษา (ทดสอบการเชื่อมต่อ)</h1>`;
-html += `<table border="1" cellpadding="10">`;
-html += `<tr><th>69319010120</th><th>นางสาวธัญญาภรณ์ มีเณร</th></tr>`;
-// วนลูปนําขอมูลแตละแถวมาแสดง
+client.release(); // คนืการเชื่อมต่อเมื่อใช้งานเสร็จ
+// 4. นําข้อมูลที่ได้(result.rows) มาประกอบเป็นตาราง HTML
+let html = <h1>ฐานข้อมูลนักศึกษา (ทดสอบการเชื่อมต่อ)</h1>;
+html += <table border="1" cellpadding="10">;
+html += <tr><th>รหัสนักศึกษา</th><th>ชื่อ-นามสกุล</th></tr>;
+// วนลูปนําข้อมูลแต่ละแถวมาแสดง
 result.rows.forEach(row => {
-html += `<tr><td>${row.student_id}</td><td>${row.student_name}</td></tr>`;
+html += <tr><td>${row.student_id}</td><td>${row.student_name}</td></tr>;
 });
-html += `</table>`;
+html += </table>;
 res.end(html);
 } catch (err) {
-// กรณเีชื่อมตอไมไดหรือเขียนชื่อตารางผิด
+// กรณีเชื่อมต่อไม่ได้หรือเขียนชื่อตารางผิด
 console.error(err);
-res.end(`<h1>เกิดขอผิดพลาด!</h1><p>${err.message}</p>`);
+res.end(<h1>เกิดข้อผิดพลาด!</h1><p>${err.message}</p>);
 }
 });
 server.listen(port, () => {
-console.log(`Server is running on port: ${port}`);
+console.log(Server is running on port: ${port});
 });
