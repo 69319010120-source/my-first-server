@@ -31,3 +31,6 @@ console.error(err);
 res.end(`<h1>เกิดขอผิดพลาด!</h1><p>${err.message}</p>`);
 }
 });
+server.listen(port, () => {
+console.log(`Server is running on port: ${port}`);
+});
